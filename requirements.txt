@@ -12,7 +12,7 @@ markupsafe==2.1.1
 pytest==7.2.2
 pytest-cov==4.0.0
 python-dateutil==2.8.2
-python-dotenv==0.21.0
+python-dotenv==1.0.0
 pytz==2022.7.1
 quart==0.18.3
 reportlab==3.6.12
