@@ -40,7 +40,7 @@ async def shutdown():
 def index():
     return "ok"
 
-@app.route("/lesson_style", methods=["POST"])
+@app.route("/lesson_style/", methods=["POST"])
 async def set_prompt_to_session():
     body = await request.get_json()
 
@@ -59,7 +59,7 @@ async def set_prompt_to_session():
     return jsonify({ "message": "success" })
 
 
-@app.route("/query", methods=["POST"])
+@app.route("/query/", methods=["POST"])
 async def get_response_stream():
     body = await request.get_json()
     
