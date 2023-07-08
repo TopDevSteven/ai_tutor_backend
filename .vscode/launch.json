@@ -1,0 +1,28 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Quart",
+      "type": "python",
+      "request": "launch",
+      "module": "quart",
+      "cwd": "${workspaceFolder}/src",
+      "args": ["--app", "app", "--debug", "run", "--port", "27017"],
+      "jinja": true,
+      "justMyCode": true
+    },
+    {
+      "name": "Worker",
+      "type": "python",
+      "request": "launch",
+      "module": "rebalance",
+      "cwd": "${workspaceFolder}/src",
+      "args": [],
+      "jinja": true,
+      "justMyCode": true
+    }
+  ]
+}
