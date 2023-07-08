@@ -7,6 +7,7 @@ import gzip
 from dotenv import load_dotenv
 from quart import Quart, jsonify, request, Response, make_response, session
 from quart.helpers import stream_with_context
+from quart_cors import cors
 
 from log import init_logging
 

@@ -22,3 +22,4 @@ urllib3==1.26.12
 uvicorn==0.18.3
 werkzeug==2.2.3
 quart-session
+quart_cors==0.6.0
