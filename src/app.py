@@ -3,11 +3,11 @@ import logging
 import os
 import json
 import gzip
+import uuid
 
 from dotenv import load_dotenv
 from quart import Quart, jsonify, request, Response, make_response, session
 from quart.helpers import stream_with_context
-from quart_cors import cors
 
 from log import init_logging
 
@@ -53,11 +53,13 @@ async def set_prompt_to_session():
         body['reasoning_framework']
     )
 
-    session_id = request.cookies["sessionid"]
+    user_id = str(uuid.uuid4())
 
-    new_prompt_dict[session_id] = new_prompt  # Store new_prompt in the global dictionary
+    new_prompt_dict[user_id] = new_prompt  # Store new_prompt in the global dictionary
 
-    return jsonify({ "message": "success" })
+    response = make_response(jsonify({ "message": "success" }))
+    response.set_cookie("user_id", user_id)
+    return 
 
 
 @app.route("/query/", methods=["POST"])
@@ -66,9 +68,9 @@ async def get_response_stream():
     
     messages = body["messages"]
 
-    session_id = request.cookies["sessionid"]
+    user_id = request.cookies["user_id"]
 
-    new_prompt = new_prompt_dict.get(session_id)  # Retrieve the new_prompt from the global dictionary
+    new_prompt = new_prompt_dict.get(user_id)  # Retrieve the new_prompt from the global dictionary
 
     if new_prompt is None:
         # Handle the case when new_prompt is not found
