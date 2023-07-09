@@ -57,9 +57,9 @@ async def set_prompt_to_session():
 
     new_prompt_dict[user_id] = new_prompt  # Store new_prompt in the global dictionary
 
-    response = make_response(jsonify({ "message": "success" }))
-    response.set_cookie("user_id", user_id)
-    return 
+    session["user_id"] = user_id
+
+    return jsonify({ "message": "success" })
 
 
 @app.route("/query/", methods=["POST"])
@@ -68,7 +68,10 @@ async def get_response_stream():
     
     messages = body["messages"]
 
-    user_id = request.cookies["user_id"]
+    user_id = session.get("user_id")
+
+    if user_id:
+        return jsonify({ "message": "can't find user_id" })
 
     new_prompt = new_prompt_dict.get(user_id)  # Retrieve the new_prompt from the global dictionary
 
