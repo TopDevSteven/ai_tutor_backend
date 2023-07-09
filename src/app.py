@@ -16,6 +16,7 @@ init_logging()
 logger = logging.getLogger(__name__)
 
 app = Quart(__name__)
+app.secret_key = os.getenv("SECRET_KEY")
 
 from datetime import date
 
