@@ -72,7 +72,7 @@ async def get_response_stream():
 
     user_id = request.cookies.get("user_id")
 
-    if user_id:
+    if not user_id:
         return jsonify({ "message": "can't find user_id" })
 
     new_prompt = new_prompt_dict.get(user_id)  # Retrieve the new_prompt from the global dictionary
