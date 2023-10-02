@@ -14,7 +14,7 @@ pytest-cov==4.0.0
 python-dateutil==2.8.2
 python-dotenv==0.21.0
 pytz==2022.7.1
-quart==0.18.3
+quart==0.19.2
 reportlab==3.6.12
 schedule==1.1.0
 six==1.16.0
